@@ -8,14 +8,16 @@ function PlanPage({ setPage }) {
   const subHead = headingAndSub[1].subHeading;
   const [isChecked, setIsChecked] = useState(false);
   const { appData, setAppData } = useAppContext();
+//   cosnt [price,setPrice]=useState("")
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
+  function handlePlanChange(name, plPrice) {
 
-  console.log(appData);
-  function handlePlanChange(name, duration) {
-    setAppData({ ...appData, planType: name });
+    setAppData({ ...appData, planType: name ,planPrice:plPrice});
+    setIsButtonClicked(true)
   }
   const handleCheckboxChange = () => {
+    setIsButtonClicked(false)
     if (!isChecked) {
       setAppData({ ...appData, planDuration: "Yearly" });
     } else if (isChecked) {
@@ -24,9 +26,8 @@ function PlanPage({ setPage }) {
     setIsChecked(!isChecked);
   };
   function handleNextPage() {
-    if(appData.planType){
-
-        setPage("AddOn");
+    if (appData.planType) {
+      setPage("AddOn");
     }
   }
   function handleLastPage() {
@@ -38,23 +39,29 @@ function PlanPage({ setPage }) {
       <Heading heading={head} subHeading={subHead} />
       <div className="flex justify-between w-full mt-12">
         {planData.map((plan) => {
+            let price;
+           appData?.planDuration==="Monthly" ? price = plan.planMonthly : price = plan.planYearly
           return (
             <button
-              onClick={() => handlePlanChange(plan.name, plan.duration)}
+              onClick={() => handlePlanChange(plan.name, price)}
               key={plan.name}
-              className={`text-left border-2  ${appData.planType===plan.name?"border-[#0a00c6]":"border-gray-200"} rounded-md w-1/4 h-[120px] p-3 flex flex-col justify-between`}
+              className={`text-left border-2  ${
+                appData.planType === plan.name && isButtonClicked
+                  ? "border-[#0a00c6]"
+                  : "border-gray-200"
+              } rounded-md w-1/4 h-[120px] p-3 flex flex-col justify-between`}
             >
               <img src={plan.imgUrl} width={30} height={30} />
               <div>
                 <p className="text-sm text-[#0a00c6] font-bold">{plan.name}</p>
                 {appData?.planDuration === "Monthly" ? (
-  <p className="text-xs text-gray-400">{plan.planMonthly}</p>
-) : (
-  <div>
-    <p className="text-xs text-gray-400">{plan.planYearly}</p>
-    <p className="text-[8px] text-gray-600">2 Months Free</p>
-  </div>
-)}
+                  <p className="text-xs text-gray-400">{plan.planMonthly}</p>
+                ) : (
+                  <div>
+                    <p className="text-xs text-gray-400">{plan.planYearly}</p>
+                    <p className="text-[8px] text-gray-600">2 Months Free</p>
+                  </div>
+                )}
               </div>
             </button>
           );

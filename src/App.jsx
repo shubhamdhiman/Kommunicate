@@ -7,6 +7,7 @@ import InfoPage from './Components/InfoPage';
 import PlanPage from './Components/PlanPage';
 import AddOn from './Components/AddOn';
 import SummaryPage from './Components/SummaryPage';
+import Thankyou from './Components/Thankyou';
 import { AppContextProvider } from './Components/SubComponents/AppContext'; // Import the context provider
 
 function App() {
@@ -23,10 +24,13 @@ function App() {
             ) : page === 'Plan' ? (
               <PlanPage  setPage={setPage}/>
             ) : page === 'AddOn' ? (
-              <AddOn />
-            ) : (
-              <SummaryPage />
-            )}
+              <AddOn setPage={setPage}/>
+            ) : 
+              page==="Summary"?(
+              <SummaryPage setPage={setPage}/>
+            ):
+            <Thankyou/>
+            }
           </div>
         </div>
       </div>

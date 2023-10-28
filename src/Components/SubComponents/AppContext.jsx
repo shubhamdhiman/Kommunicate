@@ -9,8 +9,10 @@ export function useAppContext() {
 export function AppContextProvider({ children }) {
   const [appData, setAppData] = useState({
     planType: '',
+    planPrice:'',
     planDuration: 'Monthly',
     addOns: [],
+    grandTotal:""
   });
 
   return (
