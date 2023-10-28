@@ -1,6 +1,8 @@
 # Kommunicate Task
 
-Note: Hello Kommunicate Team. When I was creating the UI my browser was zoomed in to 125%, and I didn't noticed that, when i deployed it I found this issue and then the time was gone. Kindly pardon me for this you can see the previes below for the UI I was working on... 
+Note: Hello Kommunicate Team. When I was creating the UI my browser was zoomed in to 125%, and I didn't noticed that, when i deployed it I found this issue and then the time was gone. Kindly pardon me for this you can see the previes below for the UI I was working on. 
+## Anyways I gave my best within the time I got.
+Thankyou...
 
 ## Deployment Link: https://melodic-sfogliatella-19e7da.netlify.app/
 
